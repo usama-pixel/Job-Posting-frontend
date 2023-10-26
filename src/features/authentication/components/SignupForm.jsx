@@ -20,7 +20,7 @@ function SignupForm() {
     const data = await response.json()
     if(data?.status === 200) {
       alert("Signup successfull")
-      navigate('/home')
+      navigate('/login')
       return
     }
     alert("Some error occured")
