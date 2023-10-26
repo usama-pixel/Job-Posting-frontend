@@ -1,0 +1,2 @@
+this folder will contain wrappers of any third-party code or library
+like when using fetch or axios, we will want to use a facade pattern (wrapping these in our own code so we use this code in our own way)
