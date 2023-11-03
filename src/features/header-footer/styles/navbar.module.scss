@@ -1,0 +1,31 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: black;
+    color: white;
+    padding-top: 20px;
+}
+
+.logo {
+    margin-left: 20px;
+}
+
+.menu {
+    // padding-top: 100px;
+    .link {
+        text-decoration: none !important;
+        color: white;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+.userSection {
+    .userSectionIcon {
+        margin-right: 20px;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: space-around;
+    }
+}

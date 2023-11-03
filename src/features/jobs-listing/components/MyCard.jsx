@@ -6,7 +6,7 @@ import '../styles/card.scss'
 
 const {Meta} = Card
 
-function MyCard({date, companyName, position, icon, tags, hourlyRate, address}) {
+function MyCard({date, companyName, position, icon, tags, hourlyRate, address, backgroundColor}) {
     const [loading, setLoading] = useState(true);
     const onChange = (checked) => {
       setLoading(!checked);
@@ -19,7 +19,7 @@ function MyCard({date, companyName, position, icon, tags, hourlyRate, address}) 
     )
     return (
         <div className='my-card'>
-            <div className='content'>
+            <div className='content' style={{background: backgroundColor}}>
                 <div className='my-card-header'>
                     <Typography.Paragraph className='date'>{date}</Typography.Paragraph>
                     <Typography.Paragraph className='bookmark'><FontAwesomeIcon icon={faBookmark} /></Typography.Paragraph>

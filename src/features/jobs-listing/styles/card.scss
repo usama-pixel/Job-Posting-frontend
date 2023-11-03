@@ -54,19 +54,21 @@ $myBackgroundColor: #ecabd9;
 
 .my-card {
     width: 250px;
-    height: fit-content;
+    // height: fit-content;
+    // min-height: 100px;
     background: $myWhite;
     border-radius: 15px;
     border: 1px solid rgb(167, 162, 162);
     .content {
         width: 95%;
-        height: fit-content;
+        // height: fit-content;
+        height: 250px;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 15px;
         margin-top: 5px;
         border-radius: 15px;
-        background: $myBackgroundColor;
+        // background: $myBackgroundColor;
         .my-card-header {
             display: flex;
             flex-direction: row;
