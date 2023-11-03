@@ -1,0 +1,54 @@
+@use '../../../assets/variables.scss' as v;
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 60%;
+    height: 75vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background: white;
+    border-radius: v.$myBorderRadius;
+    .left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // background: green;
+        .heading {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            .title {
+                // background: #daeae7;
+                border-radius: v.$myBorderRadius;
+            }
+        }
+        hr {
+            display: inline-block;
+            width: 50%;
+        }
+    }
+    .line {
+        height: 80%;
+
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.left {
+    // margin-left: 10px !important;
+}
+
+.image {
+    // width: 100px !important;
+}

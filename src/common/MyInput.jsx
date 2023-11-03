@@ -7,7 +7,7 @@ import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons'
 const MyInput = ({icon, value, setValue, placeholder}) => {
   return (
     <div>
-      <span className='my-input-container'>
+      <span >
         <Input
           className='my-input'
           size="large"

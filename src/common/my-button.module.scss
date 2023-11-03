@@ -1,0 +1,16 @@
+@use '../assets/variables.scss';
+
+.btn {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background: variables.$btnPrimaryColor;
+    padding: 10px 20px;
+    border-radius: variables.$myBorderRadius;
+}
+.btn:hover {
+    background: variables.$btnHoverColor;
+}
+.btn:focus, .btn:active {
+    background: variables.$btnSecondaryColor;
+}

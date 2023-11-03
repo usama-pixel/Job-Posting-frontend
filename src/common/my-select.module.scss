@@ -1,0 +1,44 @@
+// my-select.module.scss
+$dark: rgb(24, 23, 23);
+
+.mySelectDiv {
+  width: 100%;
+  .myInput {
+    .ant-select-selector {
+      border-radius: 20px !important;
+      background-color: $dark !important;
+      color: white !important;
+    }
+
+    .ant-select-selection-search-input {
+      background-color: transparent !important;
+      color: white !important;
+    }
+
+    // For selected tags
+    .ant-select-selection-item {
+      background-color: $dark !important;
+      color: white !important;
+    }
+  }
+}
+
+.customDropdown {
+  .ant-select-dropdown-menu-item {
+    background: $dark !important;
+    color: white !important;
+  }
+}
+// .ant-select-selection-item-content {
+//   background-color: black !important;
+// }
+// .ant-select-selection-item {
+//   background-color: black !important;
+// }
+// .ant-select-multiple .ant-select-selection-overflow-item {
+//   background-color: black !important;
+//   color: white !important;
+// }
+// :where(.css-dev-only-do-not-override-xu9wm8).ant-select-multiple .ant-select-selection-overflow-item {
+
+// }

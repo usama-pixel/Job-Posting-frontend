@@ -1,0 +1,37 @@
+@use '../../../assets/variables.scss';
+
+body {
+    // background: linear-gradient(to right, red, yellow);
+    background-image: variables.$gradient;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    // border: 2px solid black; // remove this after the design for this page is complete
+    border-radius: variables.$myBorderRadius;
+    width: 50%;
+    overflow: hidden;
+    background: rgba($color: #ffffff, $alpha: 0.3);
+    .formContainer {
+        margin: auto;
+    }
+    .link {
+        text-decoration: none;
+        color: #b24ef5;
+    }
+    .btnLogin {
+        background: variables.$gradient-btn;
+        color: white !important;
+    }
+    .btnLogin:active {
+        background: variables.$gradient-btn-active !important;
+        border: none;
+    }
+    .btnLogin:focus {
+        border: none;
+    }
+    .btnLogin:hover {
+        background: variables.$gradient-btn-hover;
+    }
+}
