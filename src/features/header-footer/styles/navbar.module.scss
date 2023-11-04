@@ -5,6 +5,7 @@
     background: black;
     color: white;
     padding-top: 20px;
+    padding-bottom: 25px;
 }
 
 .logo {
@@ -14,11 +15,25 @@
 .menu {
     // padding-top: 100px;
     .link {
+        position: relative; // Add relative positioning to the parent
         text-decoration: none !important;
         color: white;
         margin-right: 10px;
         margin-left: 10px;
-    }
+        padding-bottom: 25px;
+    
+        // Use ::after to create a pseudo-element for the border
+        &.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; // Adjust as needed to place the border below the text
+            width: 100%;
+            height: 4px;
+            background: white;
+            border-radius: 2px; // This makes the edges rounded
+        }
+      }
 }
 
 .userSection {
@@ -28,4 +43,35 @@
         // flex-direction: row;
         // justify-content: space-around;
     }
+}
+
+.findJob {
+    display: flex;
+    // padding-top: 25px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    background: black;
+    .mySelect {
+        margin-left: 10px;
+    }
+}
+.option {
+    color: white;
+    // background: blue;
+    select {
+        background: black;
+        color: white;
+        border: none;
+        width: 200px;
+    }
+}
+
+.slider {
+    color: white;
+}
+
+.line {
+    height: 40px;
 }
