@@ -3,19 +3,30 @@
     display: flex;
     flex-direction: column;
     width: 300px;
+    max-height: 500px;
+    border-radius: 40px;
+    overflow-y: scroll;
     color: white;
+    :hover {
+        background: black !important;
+        cursor: pointer !important;
+    }
 }
 .contact {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    color: white;
-    // background: green;
+    color: black;
     padding: 10px 0;
-    margin-top: 20px;
+    // margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
     border-radius: 15px !important;
-    box-shadow: 10px;
+    // box-shadow: 10px 10px 10px 10px lightblue;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: lightblue;
+    // box-shadow: 10px 10px 0 0 lightblue, 10px 10px 0 0 lightblue;
     .username {
         font-size: large;
         color: white;

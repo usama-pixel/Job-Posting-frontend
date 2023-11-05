@@ -1,0 +1,44 @@
+.messageInputContainer {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 21px;
+    padding: 10px 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  
+    input {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      flex-grow: 1;
+      margin-right: 10px;
+      font-size: 16px;
+      color: #555;
+  
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+  
+    .icons {
+      display: flex;
+  
+      .iconButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0 10px;
+        font-size: 24px; // Adjust size according to the icons you are using
+        color: #555;
+  
+        &:hover {
+          color: #333;
+        }
+  
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  

@@ -1,12 +1,12 @@
 import { Avatar, Badge, Image, Slider, Typography } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCalendar, faGear, faLocationDot, faSearch, faSuitcase } from '@fortawesome/free-solid-svg-icons';
 import MyInput from '../../../common/MyInput'
 
 import styles from '../styles/navbar.module.scss'
 import { navigationOptions } from '../../../utils/navigation-options';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Navbar() {
     const [current, setCurrent] = useState(0);
@@ -14,6 +14,19 @@ function Navbar() {
     const [lowerSalary, setLowerSalary] = useState(30);
     const [upperSalary, setUpperSalary] = useState(60);
     const navigate = useNavigate()
+    const location = useLocation()
+    console.log({location: location.pathname});
+    useEffect(() => {
+        if(location.pathname === '/home') {
+            setCurrent(0)
+        } else if(location.pathname === '/messages') {
+            setCurrent(1)
+        } else if(location.pathname === '/hiring') {
+            setCurrent(2)
+        } else if(location.pathname === '/community') {
+            setCurrent(3)
+        }
+    }, [])
     const handleMenuClick = (menuIndx) => {
         setCurrent(menuIndx);
         if(menuIndx === navigationOptions.MESSAGES) {
@@ -22,6 +35,7 @@ function Navbar() {
             navigate('/home')
         }
     };
+    // useEffect(() => setCurrent(1), [])
     return (
         <>
         <div className={styles.navbar}>

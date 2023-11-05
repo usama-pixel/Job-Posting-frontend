@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faCheckDouble } from '@fortawesome/free-solid-svg-icons'
 
 function Contacts() {
-    const messages = [1,2,3,4]
+    const messages = [1,2,3,4,5,6,7,8]
     const cardColors = [
         '#cfa8e9', '#ecabd9', '#fcb3c9', '#ffbebf', '#ffccbc', '#ffcbbe', '#ffcac1', '#ffc9c3', '#fbbcd0', '#e6b6e4', '#bbb6f6', '#75bafb'
     ]

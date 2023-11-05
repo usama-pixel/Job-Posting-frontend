@@ -1,0 +1,95 @@
+.container {
+    margin-left: 40px;
+    width: 70%;
+    max-height: 500px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 40px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    // :nth-child(1) {
+    //     // margin-left: 10px;
+    // }
+}
+.user {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    .userCol1 {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+    }
+}
+
+.icon {
+    margin-right: 20px;
+    font-size: 1.5rem;
+}
+
+.line {
+    width: 90%;
+    margin-top: 10px;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 62%;
+    overflow-y: scroll;
+    // background: green;
+
+}
+
+.msgContainerSent {
+    width: fit-content;
+    align-self: flex-end;
+    // background: red;
+    display: flex;
+    flex-direction: column;
+    .messageBubble {
+        background: green;
+        border-radius: 10px 20px 0px 10px;
+    }
+    .time {
+        // width: 20px;
+        margin-left: auto;
+        // background: green;
+    }
+}
+.msgContainerRecieved {
+    .messageBubble {
+        background: blue;
+        border-radius: 20px 10px 10px 0px;
+    }
+}
+
+.messageBubble {
+    // background-color: blue;
+    width: fit-content;
+    padding: 7px 15px;
+    // border-radius: 10px;
+    
+    :nth-child(1) {
+        color: white;
+    }
+}
+
+.input {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    // // position: relative;
+    margin-top: 15px;
+    // // top: 55px;
+    // background: blue;
+}
