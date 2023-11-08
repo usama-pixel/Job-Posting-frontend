@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Signup from './pages/Signup'
 import { Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
@@ -9,7 +9,6 @@ import Chat from './pages/Chat'
 
 function App() {
   const [count, setCount] = useState(0)
-  
   return (
     <>
     <Navbar />

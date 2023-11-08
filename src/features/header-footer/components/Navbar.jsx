@@ -1,21 +1,18 @@
 import { Avatar, Badge, Image, Slider, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faCalendar, faGear, faLocationDot, faSearch, faSuitcase } from '@fortawesome/free-solid-svg-icons';
-import MyInput from '../../../common/MyInput'
+import { faBell, faGear, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles/navbar.module.scss'
 import { navigationOptions } from '../../../utils/navigation-options';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getFetch } from '../../../lib/fetch';
 
 function Navbar() {
     const [current, setCurrent] = useState(0);
-    const [search, setSearch] = useState('');
-    const [lowerSalary, setLowerSalary] = useState(30);
-    const [upperSalary, setUpperSalary] = useState(60);
     const navigate = useNavigate()
     const location = useLocation()
-    console.log({location: location.pathname});
+    
     useEffect(() => {
         if(location.pathname === '/home') {
             setCurrent(0)
@@ -35,6 +32,7 @@ function Navbar() {
             navigate('/home')
         }
     };
+    
     // useEffect(() => setCurrent(1), [])
     return (
         <>
@@ -85,74 +83,10 @@ function Navbar() {
                 <FontAwesomeIcon className={styles.userSectionIcon} icon={faBell} />
             </div>
         </div>
-        {
+        {/* {
             current === navigationOptions.FINDJOB
-            && 
-            <div className={styles.findJob}>
-                <div className={styles.option} style={{paddingTop: '15px'}}>
-                    <MyInput
-                        icon={faSearch}
-                        placeholder={'Job Title'}
-                        value={search}
-                        setValue={setSearch}
-                    />
-                </div>
-                <hr className={styles.line} />
-                <div className={styles.option}>
-                    <span style={{border: '1px solid white', paddingTop: '9px', paddingBottom: '9px', paddingLeft: '12px', paddingRight: '12px', borderRadius: '40px'}}>
-                        <FontAwesomeIcon icon={faLocationDot} />
-                    </span>
-                    <select className={styles.mySelect}>
-                        <option>California</option>
-                        <option>Boston</option>
-                        <option>Los Vegas</option>
-                    </select>
-                </div>
-                <hr className={styles.line} />
-                <div className={styles.option}>
-                    <span style={{border: '1px solid white', paddingTop: '9px', paddingBottom: '9px', paddingLeft: '10px', paddingRight: '10px', borderRadius: '40px'}}>
-                        <FontAwesomeIcon icon={faSuitcase} />
-                    </span>
-                    <select className={styles.mySelect}>
-                        <option>Entry Level</option>
-                        <option>1-2 Years</option>
-                        <option>3-5 Years</option>
-                        <option>5-8 Years</option>
-                        <option>8+ Years</option>
-                    </select>
-                </div>
-                <hr className={styles.line} />
-                <div className={styles.option}>
-                    <span style={{border: '1px solid white', paddingTop: '9px', paddingBottom: '9px', paddingLeft: '10px', paddingRight: '10px', borderRadius: '40px'}}>
-                        <FontAwesomeIcon icon={faCalendar} />
-                    </span>
-                    <select className={styles.mySelect}>
-                        <option>Per Hour</option>
-                        <option>Per Week</option>
-                        <option>Per Month</option>
-                        <option>Per Year</option>
-                    </select>
-                </div>
-                <hr className={styles.line} />
-                <div className={styles.slider}>
-                    <Typography.Text style={{color: 'white'}}>Salary Range ${lowerSalary} - ${upperSalary}</Typography.Text>
-                    <Slider
-                        range
-                        defaultValue={[lowerSalary, upperSalary]}
-                        onChange={e => {
-                            if(!e) return;
-                            setLowerSalary(e[0])
-                            setUpperSalary(e[1])
-                        }}
-                        styles={{
-                            rail: {
-                                background: 'white'
-                            }
-                        }}
-                    />
-                </div>
-            </div>
-        }
+            &&
+        } */}
         </>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import {postFetch} from '../../../lib/fetch'
 import MyInput from '../../../common/MyInput'
-import { Image, Select, Typography } from 'antd'
+import { DatePicker, Image, Select, Typography } from 'antd'
 import styles from '../style/create-form.module.scss'
 import MyButton from '../../../common/MyButton'
 import MySelect from '../../../common/MySelect'
@@ -14,6 +14,9 @@ function CreateForm() {
   const [tags, setTags] = useState('')
   const [hourlyRate, setHourlyRate] = useState('')
   const [address, setAddress] = useState('')
+
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     postFetch('/job/create', {
@@ -54,7 +57,8 @@ function CreateForm() {
       <hr className={styles.line} />
       <form onSubmit={handleSubmit} className={styles.form}>
         <MyInput value={position} setValue={setPosition} placeholder={'Postition/Title'} />
-        <MyInput value={date} setValue={setDate} placeholder={'Date'} />
+        {/* <MyInput value={date} setValue={setDate} placeholder={'Date'} /> */}
+        {/* <DatePicker onChange={(date, dateString) => setDate(dateString)} /> */}
         <MyInput value={companyName} setValue={setCompanyName} placeholder={'Company Name'} />
         <MySelect options={options} />
         {/* <MyInput value={tags} setValue={setTags} placeholder={'Tags'} /> */}

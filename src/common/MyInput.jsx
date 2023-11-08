@@ -4,7 +4,7 @@ import './my-input.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons'
 
-const MyInput = ({icon, value, setValue, placeholder}) => {
+const MyInput = ({icon, value, setValue, placeholder, enterCb = () => {console.log('Default onPressEnter callback')}}) => {
   return (
     <div>
       <span >
@@ -16,6 +16,7 @@ const MyInput = ({icon, value, setValue, placeholder}) => {
           value={value}
           onChange={e => setValue(e.target.value)}
           allowClear= {{clearIcon: <FontAwesomeIcon style={{color: 'white'}} icon={faXmarkCircle} />}}
+          onPressEnter={enterCb}
         />
       </span>
     </div>

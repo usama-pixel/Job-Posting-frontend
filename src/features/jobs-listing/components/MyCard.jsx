@@ -30,14 +30,14 @@ function MyCard({date, companyName, position, icon, tags, hourlyRate, address, b
                     <Avatar src={icon} />
                 </div>
                 <Space size={[0, 8]} wrap className='tags'>
-                    {tags.map(tag => (
-                        <Tag color="processing" className='tag'>{tag}</Tag>
+                    {tags.map((tag, indx) => (
+                        <Tag key={indx} color="processing" className='tag'>{tag}</Tag>
                     ))}
                 </Space>
             </div>
             <div className='my-card-footer'>
                 <span>
-                    <Typography.Paragraph className='hour-rate'>{hourlyRate}</Typography.Paragraph>
+                    <Typography.Paragraph className='hour-rate'>${hourlyRate}/hr</Typography.Paragraph>
                     <Typography.Paragraph className='address'>{address}</Typography.Paragraph>
                 </span>
                 <Button className='btn'>Details</Button>

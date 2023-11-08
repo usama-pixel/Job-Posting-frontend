@@ -2,46 +2,44 @@ import React from 'react'
 import styles from '../styles/sidebar.module.scss'
 import { Checkbox, Typography } from 'antd'
 
-function Sidebar() {
+function Sidebar({setSchedule, setType}) {
     const scheduleOptions = [
         {
             label: 'Full Time',
-            value: 'fullTime',
+            value: 'FULL_TIME',
         },
         {
             label: 'Part Time',
-            value: 'partTime'
+            value: 'PART_TIME'
         },
         {
             label: 'Internship',
-            value: 'internship'
+            value: 'INTERNSHIP'
         },
         {
             label: 'Project Work',
-            value: 'projectWork'
+            value: 'PROJECT_WORK'
         },
     ]
     const employmentTypeOptions = [
         {
             label: 'Full Day',
-            value: 'fullDay'
+            value: 'FULL_DAY'
         },
         {
             label: 'Flexible Schedule',
-            value: 'flexibleSchedule'
+            value: 'FLEXIBLE'
         },
         {
             label: 'Shift Work',
-            value: 'shiftWork'
+            value: 'SHIFT_WORK'
         },
         {
             label: 'Remote Work',
-            value: 'remoteWork'
+            value: 'REMOTE'
         }
     ]
-    const onChange = (checkedValues) => {
-        console.log('checked = ', checkedValues);
-      };
+    
     return (
         <div style={{display: 'flex'}}>
             <div className={styles.container}>
@@ -56,8 +54,7 @@ function Sidebar() {
                     <Checkbox.Group
                         style={{display: 'flex', flexDirection: 'column', marginBottom: '20px'}}
                         options={scheduleOptions}
-                        defaultValue={['fullTime']}
-                        onChange={onChange}
+                        onChange={(checkedValues) => setSchedule(checkedValues)}
                     />
                     
                     <Typography.Paragraph className={[styles.secondaryText, styles.bold]}>Employement Type</Typography.Paragraph>
@@ -65,7 +62,7 @@ function Sidebar() {
                         style={{display: 'flex', flexDirection: 'column'}}
                         options={employmentTypeOptions}
                         defaultValue={['Apple']}
-                        onChange={onChange}
+                        onChange={(checkedValues) => setType(checkedValues)}
                     />
                 </div>
             </div>

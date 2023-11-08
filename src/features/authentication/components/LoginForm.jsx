@@ -24,7 +24,7 @@ function LoginForm() {
       navigate('/home')
       return
     }
-    alert("Some error occured")
+    alert(data?.msg)
   }
   const handleCheckboxChange = (e) => {
     console.log(e.target.checked);
