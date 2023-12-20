@@ -1,17 +1,25 @@
 @use '../../../assets/variables.scss' as v;
 
+// .container {
+//     display: flex;
+//     flex-direction: column;
+// }
+
 .container {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+    // display: flex;
+    // flex-direction: row;
+    // align-items: center;
     width: 60%;
-    height: 75vh;
+    height: 'fit-content';
+    min-height: 75vh;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
+    padding-top: 25px;
     padding-left: 40px;
     padding-right: 40px;
     background: white;
+    position: relative;
     border-radius: v.$myBorderRadius;
     .left {
         display: flex;
@@ -45,6 +53,17 @@
         align-items: center;
     }
 }
+
+.mySelect {
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    background: black;
+    font-weight: 500;
+}
+
 .left {
     // margin-left: 10px !important;
 }

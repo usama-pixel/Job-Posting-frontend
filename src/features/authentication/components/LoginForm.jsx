@@ -1,30 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MyInput from '../../../common/MyInput';
 import { postFetch } from '../../../lib/fetch';
 import { useNavigate } from 'react-router-dom';
 import { Button, Checkbox, Image, Typography } from 'antd';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import Cookies from 'js-cookie';
 import styles from '../styles/form.module.scss'
 
-function LoginForm() {
+function LoginForm({ socket }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [test, setTest] = useState("No Data");
-  
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if(Cookies.get('token')) navigate('/home')
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log({username, password});
+    // console.log({username, password});
     const response = await postFetch('/login', {username, password})
-    const data = await response.json()
-    console.log({data});
-    if(data?.status === 200) {
+    const result = await response.json()
+    // console.log(data);
+    if(result?.status === 200) {
+      console.log({result})
+      Cookies.set('token', result?.data?.token)
+      sessionStorage.setItem('token', result?.data?.token)
+      sessionStorage.setItem('id', result?.data?.id)
+      sessionStorage.setItem('name', result?.data?.username)
+      socket.emit('register', result?.data?.id)
       alert("Login successfull")
       navigate('/home')
       return
     }
-    alert(data?.msg)
+    alert(result?.msg)
   }
   const handleCheckboxChange = (e) => {
     console.log(e.target.checked);

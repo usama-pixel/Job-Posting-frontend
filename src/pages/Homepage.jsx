@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { MyCard, Sidebar } from '../features/jobs-listing'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Badge, Pagination, Space, Tag, Typography, Slider } from 'antd'
+import { faCalendar, faLocationDot, faSearch, faSuitcase, } from '@fortawesome/free-solid-svg-icons';
+import Cookies from 'js-cookie';
+import MyInput from '../common/MyInput';
+import { MyCard, Sidebar } from '../features/jobs-listing'
 import { getFetch, postFetch } from '../lib/fetch';
 import styles from './styles/homepage.module.scss'
-import { faCalendar, faLocationDot, faSearch, faSuitcase, } from '@fortawesome/free-solid-svg-icons';
-import MyInput from '../common/MyInput';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 
-function Homepage() {
+function Homepage({socket}) {
   const [current, setCurrent] = useState(1);
   const [jobCount, setJobCount] = useState(0);
   const [jobs, setJobs] = useState([])
@@ -19,6 +21,11 @@ function Homepage() {
   const [location, setLocation] = useState('');
   const [schedule, setSchedule] = useState([])
   const [type, setType] = useState([])
+  const [countries, setCountries] = useState([])
+  const [experience, setExperience] = useState('')
+  const [expList, setExpList] = useState([])
+  const navigate = useNavigate()
+  const token = Cookies.get('token')
 
   const onChange = (page) => {
     setCurrent(page);
@@ -35,6 +42,43 @@ function Homepage() {
     return formattedDate;
   }
   useEffect(() => {
+    if(!socket) {console.log('socket not ');}
+    else {
+      console.log('socket is ', socket);
+      socket.connect()
+    }
+    // if(!token) navigate('/login')
+    // debugger
+    // const fetchJobs = fetch('http://localhost:3001/jobs?page=1', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${token}`
+    //   },
+    //   body: JSON.stringify({
+    //     lower,
+    //     upper,
+    //     search,
+    //     location,
+    //     experience,
+    //     schedule,
+    //     empType: type
+    //   })
+    // })
+    // .then(res => res.json())
+    // .then(res => {
+    //   const data = res?.data?.map(job => {
+    //     console.log({ job });
+    //     const formatedData = { ...job, date: convertDate(job.date) };
+    //     return formatedData;
+    //   });
+    //   setJobs(data)
+    //   return data;
+    // })
+    // .catch(err => {
+    //   console.log({ err });
+    //   return err; // return the error so it's still part of the result
+    // });
     const fetchJobs = postFetch(
       `/jobs?page=${current}`,
       {
@@ -42,6 +86,7 @@ function Homepage() {
         upper,
         search,
         location,
+        experience,
         schedule,
         empType: type
     })
@@ -59,8 +104,8 @@ function Homepage() {
       console.log({ err });
       return err; // return the error so it's still part of the result
     });
-
-    const fetchJobsTotal = getFetch('/job-count')
+    
+    const fetchJobsTotal = getFetch('/job-count', undefined)
     .then(res => res.json())
     .then(res => {
       setJobCount(res.data)
@@ -71,7 +116,25 @@ function Homepage() {
       return err; // return the error so it's still part of the result
     });
 
-    Promise.allSettled([fetchJobs, fetchJobsTotal])
+    const countriesPromise = getFetch('/countries', undefined)
+    .then(res => res.json())
+    .then(res => {
+      setCountries(res?.data)
+    })
+    .catch(err => {
+      console.log(err)
+      return err
+    })
+    const expPromise = getFetch('/exp', undefined)
+    .then(res => res.json())
+    .then(res => {
+      setExpList(res?.data)
+    })
+    .catch(err => {
+      console.log(err);
+      return err;
+    })
+    Promise.allSettled([fetchJobs, fetchJobsTotal, countriesPromise])
     .then(results => {
       // Handle the results here
       const successfulJobs = results.filter(result => result.status === 'fulfilled').map(result => result.value);
@@ -81,7 +144,7 @@ function Homepage() {
       console.log('Successful Jobs:', successfulJobs);
       console.log('Failed Jobs:', failedJobs);
     });
-  }, [current, lower, upper, search, location, schedule, type])
+  }, [current, lower, upper, search, location, schedule, type, experience])
 
   // const sliderChange = ([lower, upper]) => {
   //   console.log({lower, upper});
@@ -117,9 +180,9 @@ function Homepage() {
             onChange={e => {setLocation(e.target.value)}}
             value={location}
           >
-              <option>California</option>
-              <option>Boston</option>
-              <option>Los Vegas</option>
+            {countries?.map((country, indx) => (
+              <option key={indx}>{country?.name}</option>
+            ))}
           </select>
       </div>
       <hr className={styles.line} />
@@ -127,12 +190,19 @@ function Homepage() {
         <span style={{border: '1px solid white', paddingTop: '9px', paddingBottom: '9px', paddingLeft: '10px', paddingRight: '10px', borderRadius: '40px'}}>
           <FontAwesomeIcon icon={faSuitcase} />
         </span>
-        <select className={styles.mySelect}>
+        <select
+          className={styles.mySelect}
+          onChange={e => setExperience(e.target.value)}
+          value={experience}
+        >
           <option>Entry Level</option>
-          <option>1-2 Years</option>
+          {expList?.map((e, indx) => (
+            <option key={indx}>{e?.name}</option>
+          ))}
+          {/* <option>1-2 Years</option>
           <option>3-5 Years</option>
           <option>5-8 Years</option>
-          <option>8+ Years</option>
+          <option>8+ Years</option> */}
         </select>
       </div>
       <hr className={styles.line} />
@@ -192,7 +262,7 @@ function Homepage() {
               hourlyRate={job.hourly_rate}
               icon={job.icon}
               position={job.position}
-              tags={[...job.tags]}
+              // tags={[...job.tags]}
               backgroundColor={cardColors[(indx + 1) % cardColors.length]}
             />
           ))}

@@ -6,4 +6,9 @@ body, h1, h2, h3, h4, h5, p {
 }
 body {
     background: v.$gradient;
+    .ant-select-show-search:where(.css-dev-only-do-not-override-xu9wm8).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+        background: black !important;
+        border-radius: 40px;
+        padding-top: 10px;
+    }
 }

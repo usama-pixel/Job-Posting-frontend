@@ -1,18 +1,34 @@
-import { Avatar, Badge, Image, Slider, Typography } from 'antd'
 import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Avatar, Badge, Image, Dropdown, Typography, Space } from 'antd'
+import { DownOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faGear, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles/navbar.module.scss'
 import { navigationOptions } from '../../../utils/navigation-options';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getFetch } from '../../../lib/fetch';
+import Cookies from 'js-cookie';
 
 function Navbar() {
     const [current, setCurrent] = useState(0);
     const navigate = useNavigate()
     const location = useLocation()
-    
+    const dropDownItems = [
+        {
+            key: 1,
+            label: (
+                <a
+                    onClick={() => {
+                        Cookies.remove('token')
+                        sessionStorage.removeItem('id')
+                        sessionStorage.removeItem('name')
+                        navigate('/login')
+                    }}
+                    className={styles.logout}
+                >Logout</a>
+            )
+        }
+    ]
     useEffect(() => {
         if(location.pathname === '/home') {
             setCurrent(0)
@@ -32,8 +48,7 @@ function Navbar() {
             navigate('/home')
         }
     };
-    
-    // useEffect(() => setCurrent(1), [])
+    const [name, setName] = useState(sessionStorage.getItem('name'))
     return (
         <>
         <div className={styles.navbar}>
@@ -45,6 +60,9 @@ function Navbar() {
                 />
                 <Typography.Text>JobHarbor</Typography.Text>
             </div>
+            {Cookies.get('token')
+                &&
+            <>
             <div className={styles.menu}>
                 <Typography.Text><a
                     className={`${styles.link} ${current === navigationOptions.FINDJOB ? styles.active : ''}`}
@@ -65,28 +83,48 @@ function Navbar() {
             </div>
             <div className={styles.location}>
                 <FontAwesomeIcon icon={faLocationDot} />
-                <Typography.Text style={{color: 'white', marginLeft: '10px'}}>New York</Typography.Text>
+                <Typography.Text
+                    style={{color: 'white', marginLeft: '10px', cursor: 'pointer'}}
+                    // onClick={() => {
+                    //     Cookies.remove('token')
+                    //     navigate('/login')
+                    // }}
+                >{name}</Typography.Text>
             </div>
+            </>}
             <div className={styles.userSection}>
-                <Badge
-                    dot={true}
-                    offset={[-20,5]}
-                    color='green'
-                >
-                    <Avatar
-                        shape='circle'
-                        className={styles.userSectionIcon}
-                        src='https://i.pinimg.com/originals/bd/9e/0c/bd9e0c78a5af0557f6bfd5698d0747a2.jpg'
-                    />
-                </Badge>
-                <FontAwesomeIcon className={styles.userSectionIcon} icon={faGear} />
-                <FontAwesomeIcon className={styles.userSectionIcon} icon={faBell} />
+                {Cookies.get('token') ?
+                <>
+                    <Badge
+                        dot={true}
+                        offset={[-20,5]}
+                        color='green'
+                    >
+                        <Avatar
+                            shape='circle'
+                            className={styles.userSectionIcon}
+                            src='https://i.pinimg.com/originals/bd/9e/0c/bd9e0c78a5af0557f6bfd5698d0747a2.jpg'
+                        />
+                    </Badge>
+                    <Dropdown
+                        menu={{
+                            items: dropDownItems
+                        }}
+                    >
+                        <a onClick={(e) => e.preventDefault()}>
+                            <FontAwesomeIcon className={styles.userSectionIcon} icon={faGear} />
+                        </a>
+                    </Dropdown>
+                        <FontAwesomeIcon className={styles.userSectionIcon} icon={faBell} />
+                </> :
+                <>
+                    <a
+                        onClick={() => navigate('/login')}
+                        className={styles.loginBtn}>Log In</a>
+                    <a className={styles.signupBtn}>Sign Up</a>
+                </>}
             </div>
         </div>
-        {/* {
-            current === navigationOptions.FINDJOB
-            &&
-        } */}
         </>
     )
 }

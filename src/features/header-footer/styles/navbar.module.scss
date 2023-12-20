@@ -4,13 +4,17 @@
     justify-content: space-between;
     background: black;
     color: white;
-    padding-top: 20px;
-    padding-bottom: 25px;
+    padding: 30px 24px 25px;
+    // padding-top: 20px;
+    // padding-bottom: 25px;
+
 }
 
-.logo {
-    margin-left: 20px;
-}
+// .logo {
+    // margin-left: 20px;
+    // border: 2px solid white;
+    
+// }
 
 .menu {
     // padding-top: 100px;
@@ -39,9 +43,26 @@
 .userSection {
     .userSectionIcon {
         margin-right: 20px;
+        cursor: pointer;
         // display: flex;
         // flex-direction: row;
         // justify-content: space-around;
     }
 }
 
+.loginBtn, .signupBtn {
+    text-decoration: none;
+    border-radius: 100px;
+    padding: 12px 24px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.signupBtn {
+    color: black;
+    background: white;
+}
+
+.loginBtn {
+    color: white;
+    border: 1px solid white;
+}

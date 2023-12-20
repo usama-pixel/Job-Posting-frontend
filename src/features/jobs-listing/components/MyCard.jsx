@@ -30,7 +30,7 @@ function MyCard({date, companyName, position, icon, tags, hourlyRate, address, b
                     <Avatar src={icon} />
                 </div>
                 <Space size={[0, 8]} wrap className='tags'>
-                    {tags.map((tag, indx) => (
+                    {tags?.map((tag, indx) => (
                         <Tag key={indx} color="processing" className='tag'>{tag}</Tag>
                     ))}
                 </Space>

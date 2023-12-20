@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
-import MyInput from '../../../common/MyInput';
-import { postFetch } from '../../../lib/fetch';
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Button, Checkbox, Image, Typography } from 'antd';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import Cookies from 'js-cookie';
+import MyInput from '../../../common/MyInput';
+import { postFetch } from '../../../lib/fetch';
 import styles from '../styles/form.module.scss'
 
 function SignupForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [test, setTest] = useState("No Data");
-  
+  // const [test, setTest] = useState("No Data");
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if(Cookies.get('token')) navigate('/home')
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -55,6 +59,14 @@ function SignupForm() {
               className={styles.btnLogin}
               onClick={handleSubmit}
             >Signup</Button>
+          </div>
+          <div
+            style={{cursor: 'pointer', width: 'fit-content',}}
+            onClick={() => navigate('/login')}
+          >
+            <Typography.Paragraph style={{color: 'blue'}}>
+              Already have an account?
+            </Typography.Paragraph>
           </div>
         </form>
       </div>

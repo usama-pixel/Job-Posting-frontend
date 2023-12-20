@@ -1,9 +1,9 @@
 import React from 'react'
 import Messaging from '../features/messaging/index'
-const Chat = () => {
+const Chat = ({ socket }) => {
   return (
     <div>
-      <Messaging />
+      <Messaging socket={socket} />
     </div>
   )
 }

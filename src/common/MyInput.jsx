@@ -12,7 +12,7 @@ const MyInput = ({icon, value, setValue, placeholder, enterCb = () => {console.l
           className='my-input'
           size="large"
           placeholder={placeholder}
-          prefix={<FontAwesomeIcon icon={icon} style={{marginRight: '10px', marginLeft: '10px'}} />}
+          // prefix={<FontAwesomeIcon icon={icon} style={{marginRight: '10px', marginLeft: '10px'}} />}
           value={value}
           onChange={e => setValue(e.target.value)}
           allowClear= {{clearIcon: <FontAwesomeIcon style={{color: 'white'}} icon={faXmarkCircle} />}}
