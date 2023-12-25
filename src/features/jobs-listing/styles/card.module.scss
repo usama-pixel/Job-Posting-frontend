@@ -4,8 +4,7 @@ $myBackgroundColor: #ecabd9;
 
 .myCard {
     width: 250px;
-    // height: fit-content;
-    // min-height: 100px;
+    position: relative;
     background: $myWhite;
     border-radius: 15px;
     border: 1px solid rgb(167, 162, 162);
@@ -107,9 +106,17 @@ $myBackgroundColor: #ecabd9;
             color: $myBackgroundColor;
         }
     }
+    .applied {
+        position: absolute;
+        top: 0px;
+        padding: 3px 10px;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 10px;
+        background: red;
+    }
 }
+
 .modalBtns {
     background: green;
     display: flex;
-    
 }

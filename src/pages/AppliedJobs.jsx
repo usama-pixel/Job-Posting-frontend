@@ -7,7 +7,7 @@ function AppliedJobs() {
     const myId = sessionStorage.getItem('id')
     useEffect(() => {
       console.log('check')
-      getFetch('/job', `myId=${myId}`)
+      getFetch('/applied-job', `myId=${myId}`)
       .then(res => res.json())
       .then(res => {
         setJobs(prev => {
@@ -18,20 +18,20 @@ function AppliedJobs() {
       .catch(err => console.log(err))
       console.log('end check')
     },[])
-    // useEffect(() => {
-    //     getFetch('/job', `myId=${myid}`)
-    //     .then(res => res.json())
-    //     .then(res => {
-    //       console.log({jj: res})
-    //       // setJobs(res)
-    //     })
-    //     .catch(err => console.log(err))
-    // }, [jobs])
+    const cardColors = [
+      '#cfa8e9', '#ecabd9', '#fcb3c9', '#ffbebf', '#ffccbc', '#ffcbbe', '#ffcac1', '#ffc9c3', '#fbbcd0', '#e6b6e4', '#bbb6f6', '#75bafb'
+    ]
   return (
     <div className={styles.container}>
         {
-          jobs.map(job => (
-            <div className={styles.jobContainer} key={job.jobId}>
+          jobs.map((job, i) => (
+            <div
+              className={styles.jobContainer}
+              key={job.jobId}
+              style={{
+                backgroundColor: cardColors[(i + 1) % cardColors.length]
+              }}
+            >
               <p>{job.position}</p>
               <p>{job.company_name}</p>
             </div>

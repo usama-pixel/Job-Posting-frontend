@@ -7,7 +7,7 @@ import { postFetch } from '../../../lib/fetch';
 
 const {Meta} = Card
 const { confirm } = Modal
-function MyCard({date, companyName, position, icon, tags, hourlyRate, address, backgroundColor, jobId}) {
+function MyCard({date, companyName, position, icon, tags, hourlyRate, address, backgroundColor, jobId, applied}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
         setIsModalOpen(true);
@@ -28,10 +28,6 @@ function MyCard({date, companyName, position, icon, tags, hourlyRate, address, b
                 .then(res => res.json)
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
-                // console.log({myId})
-                // return new Promise((resolve, reject) => {
-                //     setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-                // }).catch(() => console.log('Oops errors!'));
             },
             onCancel() {}
         })
@@ -48,6 +44,12 @@ function MyCard({date, companyName, position, icon, tags, hourlyRate, address, b
     )
     return (
         <div className={styles.myCard}>
+            {
+            applied &&
+            <div className={styles.applied}>
+                applied
+            </div>
+            }
             <div className={styles.content} style={{background: backgroundColor}}>
                 <div className={styles.myCardHeader}>
                     <Typography.Paragraph className={styles.date}>{date}</Typography.Paragraph>
