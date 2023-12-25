@@ -1,46 +1,79 @@
 import React, { useState } from 'react'
-import { Avatar, Button, Card, Image, Skeleton, Space, Tag, Typography } from 'antd';
+import { Avatar, Button, Card, Modal, Space, Tag, Typography } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
-import '../styles/card.scss'
+import styles from '../styles/card.module.scss';
+import { postFetch } from '../../../lib/fetch';
 
 const {Meta} = Card
-
-function MyCard({date, companyName, position, icon, tags, hourlyRate, address, backgroundColor}) {
+const { confirm } = Modal
+function MyCard({date, companyName, position, icon, tags, hourlyRate, address, backgroundColor, jobId}) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+    const showPromiseConfirm = () => {
+        confirm({
+            title: 'Job Details',
+            content: 'aba abc abc',
+            async onOk() {
+                const myId = sessionStorage.getItem('id')
+                return postFetch('/job/apply', {myId, jobId})
+                .then(res => res.json)
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+                // console.log({myId})
+                // return new Promise((resolve, reject) => {
+                //     setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+                // }).catch(() => console.log('Oops errors!'));
+            },
+            onCancel() {}
+        })
+    }
     const [loading, setLoading] = useState(true);
     const onChange = (checked) => {
       setLoading(!checked);
     };
     const CardHeader = (
-        <div className='my-card-header'>
-            <div className='date'>20 May 2023</div>
-            <div className='bookmark'><FontAwesomeIcon icon={faBookmark} /></div>
+        <div className={styles.myCardHeader}>
+            <div className={styles.date}>20 May 2023</div>
+            <div className={styles.bookmark}><FontAwesomeIcon icon={faBookmark} /></div>
         </div>
     )
     return (
-        <div className='my-card'>
-            <div className='content' style={{background: backgroundColor}}>
-                <div className='my-card-header'>
-                    <Typography.Paragraph className='date'>{date}</Typography.Paragraph>
-                    <Typography.Paragraph className='bookmark'><FontAwesomeIcon icon={faBookmark} /></Typography.Paragraph>
+        <div className={styles.myCard}>
+            <div className={styles.content} style={{background: backgroundColor}}>
+                <div className={styles.myCardHeader}>
+                    <Typography.Paragraph className={styles.date}>{date}</Typography.Paragraph>
+                    <Typography.Paragraph className={styles.bookmark}><FontAwesomeIcon icon={faBookmark} /></Typography.Paragraph>
                 </div>
-                <Typography.Paragraph className='company-name'>{companyName}</Typography.Paragraph>
-                <div className='position'>
+                <Typography.Paragraph className={styles.companyName}>{companyName}</Typography.Paragraph>
+                <div className={styles.position}>
                     <Typography.Text>{position}</Typography.Text>
                     <Avatar src={icon} />
                 </div>
-                <Space size={[0, 8]} wrap className='tags'>
+                <Space size={[0, 8]} wrap className={styles.tags}>
                     {tags?.map((tag, indx) => (
-                        <Tag key={indx} color="processing" className='tag'>{tag}</Tag>
+                        <Tag key={indx} color="processing" className={styles.tag}>{tag}</Tag>
                     ))}
                 </Space>
             </div>
-            <div className='my-card-footer'>
+            <div className={styles.myCardFooter}>
                 <span>
-                    <Typography.Paragraph className='hour-rate'>${hourlyRate}/hr</Typography.Paragraph>
-                    <Typography.Paragraph className='address'>{address}</Typography.Paragraph>
+                    <Typography.Paragraph className={styles.hourRate}>${hourlyRate}/hr</Typography.Paragraph>
+                    <Typography.Paragraph className={styles.address}>{address}</Typography.Paragraph>
                 </span>
-                <Button className='btn'>Details</Button>
+                <Button
+                    onClick={showPromiseConfirm}
+                    className={styles.btn}>
+                    Details
+                </Button>
             </div>
         </div>
     )

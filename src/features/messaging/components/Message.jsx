@@ -26,8 +26,8 @@ function Message({ socket, selectedId, showMsg, selectedName }) {
             socket.emit('register', userId)
             console.log('registered')
             socket.on('recieve_msg', (data) => {
-                console.log({data});
-                setMessages([...messages, data])
+                console.log({messages, data})
+                setMessages(prev => [...prev, data])
             })
         // }
     }, [socket])
@@ -37,8 +37,8 @@ function Message({ socket, selectedId, showMsg, selectedName }) {
         .then(res => res.json())
         .then(res => {
             if(res?.status === 200) {
-                console.log({res});
                 setMessages(res.data)
+                console.log({check: res.data})
             }
         }).catch(err => {
             console.log(err);
@@ -55,6 +55,7 @@ function Message({ socket, selectedId, showMsg, selectedName }) {
             )
             console.log('emited');
             setMessage('')
+            setMessages(prev => [...prev, {from: +sessionStorage.getItem('id'), to: selectedId, msg: message}])
             // socket.emit('send_message', {room, message})
         }
         // socket.emit('send_message', {

@@ -253,24 +253,26 @@ function Homepage({socket}) {
           size={16}
           wrap
         >
-          {jobs?.map((job, indx) => (
+          {jobs?.map((job, indx) => {
+            console.log({job})
+            return (
             <MyCard
               key={indx}
               date={job.date}
+              jobId={job?.id}
               address={job.address}
               companyName={job.company_name}
               hourlyRate={job.hourly_rate}
               icon={job.icon}
               position={job.position}
-              // tags={[...job.tags]}
               backgroundColor={cardColors[(indx + 1) % cardColors.length]}
             />
-          ))}
+          )})}
         </Space>
         <Pagination
           style={{marginLeft: 'auto', marginRight: 'auto', marginTop: '20px', width: 'fit-content'}}
           defaultCurrent={current}
-          total={50}
+          total={jobCount}
           onChange={onChange}
         />
       </div>

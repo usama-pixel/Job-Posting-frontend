@@ -1,58 +1,8 @@
 $myWhite: rgb(240, 230, 230);
 $myBlack: rgb(33, 32, 32);
 $myBackgroundColor: #ecabd9;
-// .bookmark {
-//     background: $myWhite;
-//     border-radius: 80px;
-//     padding-left: 10px;
-//     padding-right: 10px;
-//     padding-bottom: 4px;
-//     padding-top: 4px;
-// }
 
-// .date {
-//     background: $myWhite;
-//     border-radius: 40px;
-//     padding-left: 10px;
-//     padding-right: 10px;
-//     padding-top: 4px;
-//     padding-bottom: 4px
-// }
-
-// .ant-card-head {
-//     border: none !important;
-// }
-
-// .my-card {
-//     width: 300px;
-//     background: #ecabd9;
-//     border: 1px gray solid;
-//     .content {
-//         width: 90%;
-//     }
-//     .my-card-header {
-//         display: flex;
-//         flex-direction: row;
-//         justify-content: space-between;
-//     }
-//     .company-name {
-//         // background: red;
-//         margin-top: -20px;
-//         font-weight: bold;
-//     }
-//     .position {
-//         display: flex;
-//         flex-direction: row;
-//         justify-content: space-between;
-//         margin-bottom: 20px;
-//         p {
-//             font-size: large;
-//             font-weight: 600;
-//         }
-//     }
-// }
-
-.my-card {
+.myCard {
     width: 250px;
     // height: fit-content;
     // min-height: 100px;
@@ -69,7 +19,7 @@ $myBackgroundColor: #ecabd9;
         margin-top: 5px;
         border-radius: 15px;
         // background: $myBackgroundColor;
-        .my-card-header {
+        .myCardHeader {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -95,10 +45,8 @@ $myBackgroundColor: #ecabd9;
             // padding-bottom: 40px;
             margin-left: 15px;
             margin-top: 15px;
-            
-            
         }
-        .company-name {
+        .companyName {
             // background: red;
             margin-bottom: 0px;
             font-weight: bold;
@@ -126,7 +74,7 @@ $myBackgroundColor: #ecabd9;
             }
         }
     }
-    .my-card-footer {
+    .myCardFooter {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -136,7 +84,7 @@ $myBackgroundColor: #ecabd9;
         span {
             margin-left: 15px;
             margin-right: 15px;
-            .hour-rate {
+            .hourRate {
                 font-weight: bold;
                 margin-bottom: 0;
             }
@@ -159,4 +107,9 @@ $myBackgroundColor: #ecabd9;
             color: $myBackgroundColor;
         }
     }
+}
+.modalBtns {
+    background: green;
+    display: flex;
+    
 }

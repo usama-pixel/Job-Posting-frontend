@@ -16,7 +16,7 @@ export const postFetch = (url = "", body = {}) => {
 }
 
 export const getFetch = (url = '', params='') => {
-    return fetch(base_url + url, {
+    return fetch(base_url + url + '?' + params, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`

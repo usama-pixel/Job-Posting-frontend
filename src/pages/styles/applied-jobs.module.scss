@@ -1,0 +1,12 @@
+.jobContainer {
+    background: green;
+    margin-top: 10px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 10px;
+    border-radius: 30px;
+    display: flex;
+    filter: blur(1px);
+    // backdrop-filter: blur(16px);
+}

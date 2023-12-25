@@ -10,7 +10,7 @@ import { navigationOptions } from '../../../utils/navigation-options';
 import Cookies from 'js-cookie';
 
 function Navbar() {
-    const [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useState(-1);
     const navigate = useNavigate()
     const location = useLocation()
     const dropDownItems = [
@@ -34,18 +34,20 @@ function Navbar() {
             setCurrent(0)
         } else if(location.pathname === '/messages') {
             setCurrent(1)
-        } else if(location.pathname === '/hiring') {
+        } else if(location.pathname === '/applied-jobs') {
             setCurrent(2)
         } else if(location.pathname === '/community') {
             setCurrent(3)
         }
-    }, [])
+    }, [current])
     const handleMenuClick = (menuIndx) => {
         setCurrent(menuIndx);
         if(menuIndx === navigationOptions.MESSAGES) {
             navigate('/messages')
         } else if(menuIndx === navigationOptions.FINDJOB) {
             navigate('/home')
+        } else if(menuIndx === navigationOptions.APPLIED_JOBS) {
+            navigate('/applied-jobs')
         }
     };
     const [name, setName] = useState(sessionStorage.getItem('name'))
@@ -73,9 +75,9 @@ function Navbar() {
                     onClick={() => handleMenuClick(navigationOptions.MESSAGES)}
                 >Messages</a></Typography.Text>
                 <Typography.Text><a
-                    className={`${styles.link} ${current === navigationOptions.HIRING ? styles.active : ''}`}
-                    onClick={() => handleMenuClick(navigationOptions.HIRING)}
-                >Hiring</a></Typography.Text>
+                    className={`${styles.link} ${current === navigationOptions.APPLIED_JOBS ? styles.active : ''}`}
+                    onClick={() => handleMenuClick(navigationOptions.APPLIED_JOBS)}
+                >Applied Jobs</a></Typography.Text>
                 <Typography.Text><a
                     className={`${styles.link} ${current === navigationOptions.COMMUNITY ? styles.active : ''}`}
                     onClick={() => handleMenuClick(navigationOptions.COMMUNITY)}

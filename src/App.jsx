@@ -3,6 +3,7 @@ import Signup from './pages/Signup'
 import { Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import Homepage from './pages/Homepage'
+import AppliedJobs from './pages/AppliedJobs'
 import JobCreation from './pages/JobCreation'
 import { Footer, Navbar } from './features/header-footer'
 import Chat from './pages/Chat'
@@ -28,6 +29,7 @@ function App() {
       <Route path='/home' element={<Homepage socket={socket} />} />
       <Route path='/job/create' element={<JobCreation />} />
       <Route path='/messages' element={<Chat socket={socket} />} />
+      <Route path='/applied-jobs' element={<AppliedJobs />} />
       <Route path='*' element={<h1>Page Not Found</h1>} />
     </Routes>
     <Footer />
