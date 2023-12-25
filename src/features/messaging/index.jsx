@@ -11,7 +11,7 @@ function index({ socket }) {
   const [showMsg, setShowMsg] = useState(false)
   useEffect(() => {
     // debugger
-    getFetch(`/users?id=${sessionStorage.getItem('id')}`)
+    getFetch('/users', `id=${sessionStorage.getItem('id')}`)
     .then(res => res.json())
     .then(res => {
       if(res?.status === 200)
