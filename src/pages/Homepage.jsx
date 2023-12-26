@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import io from 'socket.io-client'
 
 function Homepage({socket}) {
-  socket = io('https://my-job-695ce6312b95.herokuapp.com')
   const [current, setCurrent] = useState(1);
   const [jobCount, setJobCount] = useState(0);
   const [jobs, setJobs] = useState([])
@@ -45,6 +44,12 @@ function Homepage({socket}) {
     const formattedDate = `${day} ${month} ${year}`
     return formattedDate;
   }
+
+  useEffect(() => {
+    if(!socket)
+    socket = io('https://my-job-695ce6312b95.herokuapp.com:8080')
+  }, [])
+  
   useEffect(() => {
     if(!socket) {console.log('socket not ');}
     else {

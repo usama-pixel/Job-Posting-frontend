@@ -6,6 +6,7 @@ import { Button, Checkbox, Image, Typography } from 'antd';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import Cookies from 'js-cookie';
 import styles from '../styles/form.module.scss'
+import io from 'socket.io-client'
 
 function LoginForm({ socket }) {
   const [username, setUsername] = useState("");
@@ -14,6 +15,7 @@ function LoginForm({ socket }) {
   const navigate = useNavigate()
 
   useEffect(() => {
+    if(!socket) socket = io('https://my-job-695ce6312b95.herokuapp.com:8080');
     if(Cookies.get('token')) navigate('/home')
   }, [])
 
@@ -29,7 +31,7 @@ function LoginForm({ socket }) {
       sessionStorage.setItem('token', result?.data?.token)
       sessionStorage.setItem('id', result?.data?.id)
       sessionStorage.setItem('name', result?.data?.username)
-      socket.emit('register', result?.data?.id)
+      socket?.emit('register', result?.data?.id)
       alert("Login successfull")
       navigate('/home')
       return
