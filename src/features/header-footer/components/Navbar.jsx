@@ -123,7 +123,10 @@ function Navbar() {
                     <a
                         onClick={() => navigate('/login')}
                         className={styles.loginBtn}>Log In</a>
-                    <a className={styles.signupBtn}>Sign Up</a>
+                    <a
+                        onClick={() => navigate('/signup')}
+                        className={styles.signupBtn}
+                    >Sign Up</a>
                 </>}
             </div>
         </div>
