@@ -10,6 +10,7 @@ import styles from './styles/homepage.module.scss'
 import { useNavigate } from 'react-router-dom';
 
 function Homepage({socket}) {
+  socket = io('https://my-job-695ce6312b95.herokuapp.com')
   const [current, setCurrent] = useState(1);
   const [jobCount, setJobCount] = useState(0);
   const [jobs, setJobs] = useState([])

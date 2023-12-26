@@ -12,7 +12,7 @@ import Cookies from 'js-cookie'
 
 function App() {
   // const [socket, setSocket] = useState(null)
-  const socket = io('http://localhost:3001')
+  let socket;
   // const socket = null
   // setSocket(newSocket)
   useEffect(() => {
