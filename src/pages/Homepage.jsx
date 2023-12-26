@@ -8,6 +8,7 @@ import { MyCard, Sidebar } from '../features/jobs-listing'
 import { getFetch, postFetch } from '../lib/fetch';
 import styles from './styles/homepage.module.scss'
 import { useNavigate } from 'react-router-dom';
+import io from 'socket.io-client'
 
 function Homepage({socket}) {
   socket = io('https://my-job-695ce6312b95.herokuapp.com')

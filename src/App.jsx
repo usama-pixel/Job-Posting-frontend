@@ -7,7 +7,6 @@ import AppliedJobs from './pages/AppliedJobs'
 import JobCreation from './pages/JobCreation'
 import { Footer, Navbar } from './features/header-footer'
 import Chat from './pages/Chat'
-import io from 'socket.io-client'
 import Cookies from 'js-cookie'
 
 function App() {
@@ -17,6 +16,7 @@ function App() {
   // setSocket(newSocket)
   useEffect(() => {
     return () => {
+      if(socket)
       socket.disconnect()
     }
   },[])
