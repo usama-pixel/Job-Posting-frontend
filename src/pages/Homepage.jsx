@@ -9,6 +9,7 @@ import { getFetch, postFetch } from '../lib/fetch';
 import styles from './styles/homepage.module.scss'
 import { useNavigate } from 'react-router-dom';
 import io from 'socket.io-client'
+import { base_url } from '../utils/vars';
 
 function Homepage({socket}) {
   const [current, setCurrent] = useState(1);
@@ -47,7 +48,7 @@ function Homepage({socket}) {
 
   useEffect(() => {
     if(!socket)
-    socket = io('https://my-job-695ce6312b95.herokuapp.com:8080')
+    socket = io(base_url)
   }, [])
   
   useEffect(() => {

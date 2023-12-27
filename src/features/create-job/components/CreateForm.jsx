@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { Button, DatePicker, Image, Select, Steps, Typography } from 'antd'
 import {getFetch, postFetch} from '../../../lib/fetch'
 import MyInput from '../../../common/MyInput'
-import { Button, DatePicker, Image, Select, Steps, Typography } from 'antd'
 import styles from '../style/create-form.module.scss'
 import MySelect from '../../../common/MySelect'
 import MyTag from '../../../common/MyTag'
@@ -26,6 +26,7 @@ function CreateForm() {
   useEffect(() => {
     console.log({formData})
   }, [formData])
+  const navigate = useNavigate()
   const [schedules, setSchedules] = useState([])
   const [empTypes, setEmptTypes] = useState([]);
   const [countries, setCountries] = useState([]);
@@ -84,7 +85,12 @@ function CreateForm() {
       expId: formData.selectedExpLevel,
     })
     .then(res => res.json())
-    .then(res => console.log({res}))
+    .then(res => {
+      console.log({res})
+      if(res?.status === 200) {
+        navigate('/home')
+      }
+    })
     .catch(err => console.log('err'))
   }
   const steps = [

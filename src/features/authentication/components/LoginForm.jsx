@@ -7,6 +7,7 @@ import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import Cookies from 'js-cookie';
 import styles from '../styles/form.module.scss'
 import io from 'socket.io-client'
+import { base_url } from '../../../utils/vars';
 
 function LoginForm({ socket }) {
   const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ function LoginForm({ socket }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(!socket) socket = io('https://my-job-695ce6312b95.herokuapp.com:8080');
+    if(!socket) socket = io(base_url);
     if(Cookies.get('token')) navigate('/home')
   }, [])
 

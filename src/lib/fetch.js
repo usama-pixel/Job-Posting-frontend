@@ -1,7 +1,8 @@
 import Cookies from "js-cookie"
+import { base_url } from "../utils/vars"
 
 const token = Cookies.get('token')
-const base_url = "https://my-job-695ce6312b95.herokuapp.com"
+console.log({base_url})
 // const base_url = "http://localhost:8080"
 export const postFetch = (url = "", body = {}) => {
     // if(!token) return Promise.reject('No token provided')
