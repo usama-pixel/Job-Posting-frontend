@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import io from 'socket.io-client'
 import Contact from './components/Contacts'
 import Message from './components/Message'
 import styles from './styles/index.module.scss'
 import { getFetch } from '../../lib/fetch'
+import { base_url } from '../../utils/vars'
 
 function index({ socket }) {
   const [users, setUsers] = useState([])
@@ -10,6 +12,7 @@ function index({ socket }) {
   const [selectedName, setSelectedName] = useState('')
   const [showMsg, setShowMsg] = useState(false)
   useEffect(() => {
+    if(!socket) socket = io(base_url);
     // debugger
     getFetch('/users', `id=${sessionStorage.getItem('id')}`)
     .then(res => res.json())

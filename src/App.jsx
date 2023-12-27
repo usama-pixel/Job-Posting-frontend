@@ -7,19 +7,21 @@ import AppliedJobs from './pages/AppliedJobs'
 import JobCreation from './pages/JobCreation'
 import { Footer, Navbar } from './features/header-footer'
 import Chat from './pages/Chat'
+import io from 'socket.io-client'
 import Cookies from 'js-cookie'
+import { base_url } from './utils/vars'
 
 function App() {
-  // const [socket, setSocket] = useState(null)
-  let socket;
-  // const socket = null
-  // setSocket(newSocket)
+  const [socket, setSocket] = useState(null);
   useEffect(() => {
+    const newSocket = io(base_url);
+    setSocket(newSocket);
+
     return () => {
-      if(socket)
-      socket.disconnect()
+      newSocket.disconnect();
     }
-  },[])
+  }, []);
+
   return (
     <>
     <Navbar socket={socket} />

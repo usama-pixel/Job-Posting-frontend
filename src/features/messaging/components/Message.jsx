@@ -7,6 +7,7 @@ import MessageInput from './MessageInput'
 import io from 'socket.io-client'
 import Cookies from 'js-cookie'
 import { postFetch } from '../../../lib/fetch'
+import { base_url } from '../../../utils/vars'
 
 function Message({ socket, selectedId, showMsg, selectedName }) {
     // const socket = socket('http://localhost:3001')
@@ -17,18 +18,21 @@ function Message({ socket, selectedId, showMsg, selectedName }) {
     const [messages, setMessages] = useState([])
     const [message, setMessage] = useState('')
     useEffect(() => {
-            console.log('is socket connected', socket.connected)
-            if(!socket.connected) {
-                socket.connect()
-                console.log('socket connected', socket.connected)
-            }
-            console.log('registering')
-            socket.emit('register', userId)
-            console.log('registered')
-            socket.on('recieve_msg', (data) => {
-                console.log({messages, data})
-                setMessages(prev => [...prev, data])
-            })
+        socket = io(base_url)
+    }, [])
+    useEffect(() => {
+        console.log('is socket connected', socket.connected)
+        if(!socket.connected) {
+            socket.connect()
+            console.log('socket connected', socket.connected)
+        }
+        console.log('registering')
+        socket.emit('register', userId)
+        console.log('registered')
+        socket.on('recieve_msg', (data) => {
+            console.log({messages, data})
+            setMessages(prev => [...prev, data])
+        })
         // }
     }, [socket])
     useEffect(() => {
@@ -49,7 +53,8 @@ function Message({ socket, selectedId, showMsg, selectedName }) {
         if(message !== '') {
             console.log('emit');
             console.log({to: selectedId, from: +sessionStorage.getItem('id'), msg: message})
-            socket.emit(
+            console.log('socket is', socket)
+            socket?.emit(
                 'send_msg',
                 {to: selectedId, from: +sessionStorage.getItem('id'), msg: message}
             )
