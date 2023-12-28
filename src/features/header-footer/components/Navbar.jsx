@@ -4,10 +4,10 @@ import { Avatar, Badge, Image, Dropdown, Typography, Space } from 'antd'
 import { DownOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faGear, faLocationDot } from '@fortawesome/free-solid-svg-icons';
-
-import styles from '../styles/navbar.module.scss'
-import { navigationOptions } from '../../../utils/navigation-options';
 import Cookies from 'js-cookie';
+
+import { navigationOptions } from '../../../utils/navigation-options';
+import styles from '../styles/navbar.module.scss'
 
 function Navbar() {
     const [current, setCurrent] = useState(-1);

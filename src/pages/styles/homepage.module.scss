@@ -1,6 +1,7 @@
 .findJob {
     display: flex;
-    // padding-top: 25px;
+    max-height: 100px;
+    // width: 100%;
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -17,7 +18,7 @@
         background: black;
         color: white;
         border: none;
-        width: 200px;
+        max-width: 200px;
     }
 }
 
@@ -27,4 +28,38 @@
 
 .line {
     height: 40px;
+}
+
+.bodyContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.rec {
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+
+@media screen and (max-width: 620px) {
+    .bodyContainer {
+        flex-direction: column;
+    }
+    .cardsContainer {
+        height: 100vh;
+        // background: red;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .rec {
+        justify-content: center;
+    }
+    .cards {
+        // background: red;
+        display: flex;
+        justify-content: center;
+    }
 }

@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div>
     <Navbar socket={socket} />
     <Routes>
       <Route path='/signup' element={<Signup />} />
@@ -35,7 +35,7 @@ function App() {
       <Route path='*' element={<h1>Page Not Found</h1>} />
     </Routes>
     <Footer />
-    </>
+    </div>
   )
 }
 
