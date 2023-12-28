@@ -230,14 +230,11 @@ function Homepage({socket}) {
             className={styles.cards}
           >
             {jobs?.map((job, indx) => {
-              console.log({jobId: job.id, appliedJobs})
-              console.log(job.id in appliedJobs)
               return (
               <MyCard
                 key={indx}
                 date={job.date}
                 applied={appliedJobs.find(appliedJob => appliedJob.id === job.id)}
-                // applied={job.id in appliedJobs ? true: false}
                 jobId={job?.id}
                 address={job.address}
                 companyName={job.company_name}
