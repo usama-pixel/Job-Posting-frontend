@@ -28,7 +28,7 @@ const MyTag = ({ selectedTags, setSelectedTags }) => {
   return (
     <>
       <Space size={[0, 8]} wrap>
-        {tagsData.map((tag) => (
+        {tagsData?.map((tag) => (
           <CheckableTag
             key={tag}
             checked={selectedTags.includes(tag)}

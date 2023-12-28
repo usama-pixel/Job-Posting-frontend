@@ -11,8 +11,8 @@ function AppliedJobs() {
       .then(res => res.json())
       .then(res => {
         setJobs(prev => {
-          res.data.map(job => console.log(({...job.job, jobId: job.jobId})))
-          return res.data.map(job => ({...job.job, jobId: job.jobId}))
+          res?.data?.map(job => console.log(({...job.job, jobId: job.jobId})))
+          return res?.data?.map(job => ({...job.job, jobId: job.jobId}))
         })
       })
       .catch(err => console.log(err))

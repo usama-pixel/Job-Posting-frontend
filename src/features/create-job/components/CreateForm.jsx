@@ -63,8 +63,8 @@ function CreateForm() {
 
     Promise.allSettled([schedulePromise, empTypePromise, countries, exp])
     .then(res => {
-      const successfulJobs = res.filter(res => res.status === 'fulfilled').map(res => res.value)
-      const failedJobs = res.filter(res => res.status === 'rejected').map(res => res.reason)
+      const successfulJobs = res.filter(res => res.status === 'fulfilled')?.map(res => res.value)
+      const failedJobs = res.filter(res => res.status === 'rejected')?.map(res => res.reason)
       console.log('Successful jobs: ', successfulJobs);
       console.log('failed jobs: ', failedJobs);
     })

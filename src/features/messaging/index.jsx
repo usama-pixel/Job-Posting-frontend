@@ -19,7 +19,7 @@ function index({ socket }) {
     .then(res => {
       if(res?.status === 200)
       console.log({res})
-      setUsers(res.data.map(user => user))
+      setUsers(res.data?.map(user => user))
     })
     .catch(err => console.log(err))
   }, [])

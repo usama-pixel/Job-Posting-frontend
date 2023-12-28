@@ -102,7 +102,7 @@ function Message({ socket, selectedId, showMsg, selectedName }) {
         </div>
         <hr className={styles.line} />
         <div className={styles.messages}>
-            {messages.map((msg, index) => {
+            {messages?.map((msg, index) => {
                 if(msg.fromId === +sessionStorage.getItem('id')) {
                     return (
                         <div className={`${styles.msgContainerSent}`} key={index}>

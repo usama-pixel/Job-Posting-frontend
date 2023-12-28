@@ -101,7 +101,7 @@ function Homepage({socket}) {
     .then(res => {
       console.log('applied', res)
       setAppliedJobs(prev => {
-        return res.data.map(job => ({id: job.jobId}))
+        return res?.data?.map(job => ({id: job.jobId}))
         // return res.data.map(job => ({...job.job, jobId: job.jobId}))
       })
     })
@@ -128,8 +128,8 @@ function Homepage({socket}) {
     });
     Promise.allSettled([fetchJobs, fetchJobsTotal, appliedJobs, countriesPromise])
     .then(results => {
-      const successfulJobs = results.filter(result => result.status === 'fulfilled').map(result => result.value);
-      const failedJobs = results.filter(result => result.status === 'rejected').map(result => result.reason);
+      const successfulJobs = results.filter(result => result.status === 'fulfilled')?.map(result => result.value);
+      const failedJobs = results.filter(result => result.status === 'rejected')?.map(result => result.reason);
       console.log('Successful Jobs:', successfulJobs);
       console.log('Failed Jobs:', failedJobs);
     });
