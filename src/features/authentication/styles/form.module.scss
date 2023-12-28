@@ -11,10 +11,16 @@ body {
     // border: 2px solid black; // remove this after the design for this page is complete
     border-radius: variables.$myBorderRadius;
     width: 50%;
+    min-width: 300px;
     overflow: hidden;
     background: rgba($color: #ffffff, $alpha: 0.3);
+    .img {
+        max-width: 450px;
+        height: 500px;
+    }
     .formContainer {
         margin: auto;
+        // background: green;
     }
     .link {
         text-decoration: none;
